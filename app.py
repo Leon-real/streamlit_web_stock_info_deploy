@@ -13,4 +13,8 @@ st.set_page_config(
 st.header("주식 정보 홈페이지에 오신걸 환영합니다.")
 st.subheader("맛 보기")
 
-#
+
+code = st.text_input('주식코드', '005930')
+if st.button("정보 조회하기"):
+    with st.spinner("정보 조회중 . . ."):
+        st.write("정보 조회중")
