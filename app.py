@@ -1,7 +1,14 @@
+import stock_name_select
+
 import streamlit as st
+import statsmodels.api as sm # 회기모델 
 import pandas as pd
 import numpy as np
-import stock_name_select
+import yfinance as yf
+
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
 
 # 페이지 기본 설정
 st.set_page_config(
