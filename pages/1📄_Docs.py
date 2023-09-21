@@ -5,7 +5,7 @@ import numpy as np
 # 페이지 기본 설정
 st.set_page_config(
     page_icon='📈',
-    page_title='주식 정보',
+    page_title='홈페이지 설명',
     layout='wide',
 )
 
