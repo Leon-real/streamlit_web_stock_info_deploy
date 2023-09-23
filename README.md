@@ -2,5 +2,5 @@
 
 ##### 실행 코드
 ```python
-    streamlit run app.py
+streamlit run app.py
 ```
