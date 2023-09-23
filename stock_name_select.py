@@ -6,14 +6,18 @@ import requests, json, time
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-from datetime import datetime
 
 today_date = str(datetime.today()).split(" ")[0].replace("-",'')
+if datetime.today().weekday()==5:
+    today_date = str(int(today_date)-1)
+elif datetime.today().weekday() == 6:
+    today_date = str(int(today_date)-2)
+    
 code = '005930'
 
 # 종목명, 현재가 반환하기
 def stock_info(code):
-    today_date = str(datetime.today()).split(" ")[0].replace("-",'')
+    # today_date = str(datetime.today()).split(" ")[0].replace("-",'')
     result = {}
     name = stock.get_market_ticker_name('005930')
     price, _ = get_price(code)
@@ -25,6 +29,7 @@ def stock_info(code):
 
 # 오늘의 국내 모든 주식 정보 dataframe
 def todays_list():
+    # today_date = str(datetime.today()).split(" ")[0].replace("-",'')
     stock_list = pd.DataFrame({'종목코드':stock.get_market_ticker_list(market="ALL")}) # KOSPI, KOSDAQ, KONEX, ALL, (default=KOSPI)
     stock_list['종목명'] = stock_list['종목코드'].map(lambda x: stock.get_market_ticker_name(x))
     stock_fud = pd.DataFrame(stock.get_market_fundamental_by_ticker(date=today_date, market="ALL"))
@@ -41,7 +46,7 @@ def todays_list():
     result1['적정주가 가격']=result1['EPS']*result1['PER']
     result1['내재가치/종가'] = (result1['내재가치'] / result1['종가'])
 
-    print("Complete")
+    print(f"Complete {len(result1)}")
     
     return result1
 
