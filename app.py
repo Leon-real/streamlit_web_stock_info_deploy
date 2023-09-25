@@ -2,7 +2,6 @@ import stock_name_select
 import chart_and_predict_stock
 
 import streamlit as st
-import statsmodels.api as sm # 회기모델 
 import pandas as pd
 import numpy as np
 import yfinance as yf
@@ -23,7 +22,11 @@ st.header("주식 정보 홈페이지에 오신걸 환영합니다.")
 st.subheader("맛 보기")
 
 # 종목별 정보 저장하기
-df = stock_name_select.todays_list().set_index('종목코드')
+@st.cache_data
+def load_data():
+    df = stock_name_select.todays_list().set_index('종목코드')
+    return df
+df = load_data()
 
 # 개별 주식 종목 정보 조회하기
 code = st.text_input('주식코드', '005930')

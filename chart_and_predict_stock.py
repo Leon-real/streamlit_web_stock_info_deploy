@@ -10,9 +10,13 @@ import tensorflow as tf
 from keras.layers import Dense,Dropout,LSTM
 from keras.models import Sequential
 
+import streamlit as st
+
+
 def get_data(code):
     df = fdr.DataReader(code)
     return df
+
 # 차트 보여주기
 def show_chart(code):
     df = get_data(code)

@@ -6,6 +6,8 @@ import requests, json, time
 from bs4 import BeautifulSoup
 from datetime import datetime
 
+import streamlit as st
+
 
 today_date = str(datetime.today()).split(" ")[0].replace("-",'')
 if datetime.today().weekday()==5:
@@ -13,6 +15,7 @@ if datetime.today().weekday()==5:
 elif datetime.today().weekday() == 6:
     today_date = str(int(today_date)-2)
     
+
 
 # 종목명, 현재가 반환하기
 def stock_info(code):
