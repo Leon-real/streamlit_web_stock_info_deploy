@@ -29,7 +29,12 @@ def load_data():
 df = load_data()
 
 # 개별 주식 종목 정보 조회하기
-code = st.text_input('주식코드', '005930')
+code = st.text_input('주식코드 or 종목명', '005930')
+if code.isdigit()==False:
+    code = (df.loc[df['종목명']==code.upper()].index)[0]
+    print(code)
+    
+# 정보 조회하기 버튼 클릭시
 if st.button("정보 조회하기"):
     with st.spinner("정보 조회중 . . ."):
         result = stock_name_select.stock_info(code)
