@@ -10,7 +10,12 @@ st.set_page_config(
     layout='wide',
 )
 # 종목별 정보 저장하기
-df = stock_name_select.todays_list().set_index('종목코드')
+@st.cache_data
+def load_data():
+    df = stock_name_select.todays_list().set_index('종목코드')
+    return df
+df = load_data()
+
 
 # 페이지 헤더, 서브헤더 제목 설정
 st.header("종목별 분석")
