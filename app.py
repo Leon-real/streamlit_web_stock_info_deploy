@@ -7,7 +7,6 @@ import numpy as np
 import yfinance as yf
 
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 # 페이지 기본 설정
@@ -32,7 +31,7 @@ df = load_data()
 code = st.text_input('주식코드 or 종목명', '005930')
 if code.isdigit()==False:
     code = (df.loc[df['종목명']==code.upper()].index)[0]
-    print(code)
+    # print(f"{code} 조회")
     
 # 정보 조회하기 버튼 클릭시
 if st.button("정보 조회하기"):
