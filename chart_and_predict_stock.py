@@ -2,11 +2,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import FinanceDataReader as fdr
+
 from datetime import datetime, timedelta
-from keras.models import load_model
+
 import matplotlib.pyplot as plt
+from plotly import graph_objects as go
 
 import tensorflow as tf
+from keras.models import load_model
 from keras.layers import Dense,Dropout,LSTM
 from keras.models import Sequential
 
@@ -31,6 +34,19 @@ def show_chart(code):
     plt.plot(df['ma200'], 'g', label='MA200') # 200일 이평선 녹색으로 그리기
     plt.plot(df['Close'], label='Close') # 종가 가격 그래프 그리기
     plt.legend()
+    
+    return fig
+def show_chart_ver_2(code):
+    df = get_data(code)
+    df['ma100'] = df['Close'].rolling(100).mean() # 100일 이평선
+    df['ma200'] = df['Close'].rolling(200).mean() # 200일 이평선
+    
+    df = df.dropna()
+    df = df.reset_index()
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df['Date'], y=df['Open'], name='stock_open'))
+    fig.add_trace(go.Scatter(x=df['Date'], y=df['Close'], name='stock_open'))
+    fig.layout.update(title_text='Data', xaxis_rangeslider_visible=True)
     
     return fig
 
