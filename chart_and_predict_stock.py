@@ -15,8 +15,11 @@ from keras.models import Sequential
 import streamlit as st
 
 
-def get_data(code):
-    df = fdr.DataReader(code)
+def get_data(code, start=None, end=None):
+    if start != None and end != None:
+        df = fdr.DataReader(code, start, end)
+    else:
+        df = fdr.DataReader(code)
     return df
 
 # 차트 보여주기

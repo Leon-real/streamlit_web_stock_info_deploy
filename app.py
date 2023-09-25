@@ -55,4 +55,29 @@ with st.spinner("정보 조회중 . . ."):
     end_idx = start_idx + 10
     st.dataframe(df.iloc[start_idx:end_idx])
     
-    
+# 조회할 날짜 선택하기
+col0,col1 = st.columns(2)
+with col0:
+    start_date = st.date_input('Start', value=pd.to_datetime('today'))
+with col1:
+    end_date = st.date_input('End', value=pd.to_datetime('today'))
+# 날짜 뒤바뀔 경우 순서 바꿔주기
+if sum([int(x)*y for x,y in zip(str(start_date).split("-"), [12,31,1])]) <= sum([int(x)*y for x,y in zip(str(end_date).split("-"), [12,31,1])]):
+    pass
+else:
+    temp_date= start_date
+    start_date = end_date
+    end_date = temp_date
+    print("Change Start_date and End_date to prevent Error")
+tickers = df['종목명']
+tickers_dropdown_prices = st.multiselect('종목 선택하기', tickers)
+
+# 종목을 선택했을 때 각 종목의 종가 한 그래프에 보여주기
+if len(tickers_dropdown_prices)>0: 
+    tmp_df=pd.DataFrame()
+    for ticker_dropdown_prices in tickers_dropdown_prices:
+        select_code = (df.loc[df['종목명']==ticker_dropdown_prices].index)[0]
+        tmp_df[ticker_dropdown_prices] = chart_and_predict_stock.get_data(select_code, start_date, end_date)['Close']
+        # print(tmp_df)
+        # print(select_code)
+    st.line_chart(tmp_df)
