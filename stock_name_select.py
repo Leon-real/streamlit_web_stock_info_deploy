@@ -13,13 +13,12 @@ if datetime.today().weekday()==5:
 elif datetime.today().weekday() == 6:
     today_date = str(int(today_date)-2)
     
-code = '005930'
 
 # 종목명, 현재가 반환하기
 def stock_info(code):
     # today_date = str(datetime.today()).split(" ")[0].replace("-",'')
     result = {}
-    name = stock.get_market_ticker_name('005930')
+    name = stock.get_market_ticker_name(code)
     price, _ = get_price(code)
     
     result['종목명']=name
