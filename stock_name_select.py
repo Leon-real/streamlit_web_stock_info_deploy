@@ -26,7 +26,6 @@ def stock_info(code):
     result['현재가']=price
     return result
 
-
 # 오늘의 국내 모든 주식 정보 dataframe
 def todays_list():
     # today_date = str(datetime.today()).split(" ")[0].replace("-",'')
@@ -43,7 +42,6 @@ def todays_list():
     result1 = result1.replace([0], np.nan)
     result1 = result1.dropna(axis=0)
     result1['내재가치'] = (result1['BPS'] + (result1['EPS']) * 10) / 2
-    result1['적정주가 가격']=result1['EPS']*result1['PER']
     result1['내재가치/종가'] = (result1['내재가치'] / result1['종가'])
 
     print(f"Complete {len(result1)}")
