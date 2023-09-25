@@ -46,6 +46,8 @@ def todays_list():
     result1['내재가치'] = (result1['BPS'] + (result1['EPS']) * 10) / 2
     result1['내재가치/종가'] = (result1['내재가치'] / result1['종가'])
 
+    drop_col = ['시가','고가','저가','거래량','내재가치','거래대금']
+    result1 = result1.drop(drop_col, axis=1)
     print(f"Complete {len(result1)}")
     
     return result1
