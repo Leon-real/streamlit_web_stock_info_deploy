@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import FinanceDataReader as fdr
 
 from datetime import datetime, timedelta
-
 import matplotlib.pyplot as plt
 from plotly import graph_objects as go
 
@@ -44,8 +43,10 @@ def show_chart_ver_2(code):
     df = df.dropna()
     df = df.reset_index()
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=df['Date'], y=df['Open'], name='stock_open'))
-    fig.add_trace(go.Scatter(x=df['Date'], y=df['Close'], name='stock_open'))
+    fig.add_trace(go.Scatter(x=df['Date'], y=df['Close'], name='Close'))
+    fig.add_trace(go.Scatter(x=df['Date'], y=df['ma100'], name='ma100'))
+
+    fig.add_trace(go.Scatter(x=df['Date'], y=df['ma200'], name='ma200'))
     fig.layout.update(title_text='Data', xaxis_rangeslider_visible=True)
     
     return fig
