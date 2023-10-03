@@ -53,13 +53,13 @@ with st.spinner("정보 조회중 . . ."):
         container.dataframe(df[i:i+50])
     
     st.dataframe(data=df, use_container_width=True)
-    # 페이지 번호를 선택할 수 있는 컨트롤 추가
-    page_number = st.slider('페이지 번호', 1, len(df) // 10 + 1, 1)
+    # # 페이지 번호를 선택할 수 있는 컨트롤 추가
+    # page_number = st.slider('페이지 번호', 1, len(df) // 10 + 1, 1)
 
-    # 선택한 페이지의 데이터 표시
-    start_idx = (page_number - 1) * 10
-    end_idx = start_idx + 10
-    st.dataframe(df.iloc[start_idx:end_idx])
+    # # 선택한 페이지의 데이터 표시
+    # start_idx = (page_number - 1) * 10
+    # end_idx = start_idx + 10
+    # st.dataframe(df.iloc[start_idx:end_idx])
     
 # 조회할 날짜 선택하기
 col0,col1 = st.columns(2)
