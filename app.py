@@ -49,7 +49,7 @@ st.subheader("국내 모든 주식 정보 보기")
 with st.spinner("정보 조회중 . . ."):
     # 데이터 프레임 생성하기
     container = st.container()
-    
+    st.dataframe(df)
     for i in range(0, len(df), 50):
         container.dataframe(df[i:i+50])
     print(df)
