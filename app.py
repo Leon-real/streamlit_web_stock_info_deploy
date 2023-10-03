@@ -53,6 +53,7 @@ with st.spinner("정보 조회중 . . ."):
         container.dataframe(df[i:i+50])
     
     st.dataframe(data=df, use_container_width=True)
+    st.dataframe(df)
     # # 페이지 번호를 선택할 수 있는 컨트롤 추가
     # page_number = st.slider('페이지 번호', 1, len(df) // 10 + 1, 1)
 
