@@ -49,10 +49,10 @@ st.subheader("국내 모든 주식 정보 보기")
 with st.spinner("정보 조회중 . . ."):
     # 데이터 프레임 생성하기
     container = st.container()
-    st.dataframe(df)
     for i in range(0, len(df), 50):
         container.dataframe(df[i:i+50])
-    print(df)
+    
+    st.dataframe(data=df, use_container_width=True)
     # # 페이지 번호를 선택할 수 있는 컨트롤 추가
     # page_number = st.slider('페이지 번호', 1, len(df) // 10 + 1, 1)
 
