@@ -48,7 +48,8 @@ if st.button("정보 조회하기"):
 st.subheader("국내 모든 주식 정보 보기")
 with st.spinner("정보 조회중 . . ."):
     # 데이터 프레임 생성하기
-    st.table(df)
+    # st.table(df)
+    st.dataframe(df)
     # # 페이지 번호를 선택할 수 있는 컨트롤 추가
     # page_number = st.slider('페이지 번호', 1, len(df) // 10 + 1, 1)
 
